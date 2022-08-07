@@ -95,7 +95,7 @@ withSuccessCompleter:(void(^ __nonnull)(id __nullable result))successCompleter
      andFailureBlock:(nullable FailureBlock)failure {
     [task continueWithExecutor:self.defaultExecutor
                      withBlock:^id(BFTask *btask) {
-                         if (task.error) {
+                         if (btask.error) {
                              if (failure) {
                                  if (btask.error.code == 126) {
                                      if (successIsSet) {
@@ -107,7 +107,7 @@ withSuccessCompleter:(void(^ __nonnull)(id __nullable result))successCompleter
                              }
                          } else {
                              if (successIsSet) {
-                                 successCompleter(task.result);
+                                 successCompleter(btask.result);
                              }
                          }
 
